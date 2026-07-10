@@ -63,7 +63,8 @@ a {
 .brand span,
 .agentRow span,
 .metric small,
-.metric span {
+.metric span,
+.compactItem span {
   display: block;
   color: var(--muted);
 }
@@ -148,7 +149,8 @@ h2 {
   background: var(--green);
 }
 
-.metrics {
+.metrics,
+.checkGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
@@ -172,10 +174,19 @@ h2 {
   font-size: 24px;
 }
 
-.mainGrid {
+.mainGrid,
+.threeGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 18px;
+}
+
+.mainGrid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  margin-bottom: 18px;
+}
+
+.threeGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .panel {
@@ -194,12 +205,15 @@ h2 {
   margin-bottom: 16px;
 }
 
-.agentList {
+.agentList,
+.compactList,
+.timeline {
   display: grid;
   gap: 10px;
 }
 
-.agentRow {
+.agentRow,
+.compactItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -211,7 +225,17 @@ h2 {
   background: #fbfcfc;
 }
 
-.agentRow span {
+.compactItem {
+  align-items: flex-start;
+}
+
+.compactItem p {
+  margin: 4px 0;
+  line-height: 1.35;
+}
+
+.agentRow span,
+.compactItem span {
   margin-top: 3px;
   font-size: 13px;
 }
@@ -228,30 +252,30 @@ h2 {
   font-weight: 700;
 }
 
-.badgeGreen {
+.badgeGreen,
+.badgeApproved,
+.badgeDone {
   background: #e5f6ee;
   color: var(--green);
 }
 
-.badgeAmber {
+.badgeAmber,
+.badgeDoing {
   background: #fff4dc;
   color: var(--amber);
 }
 
-.badgeRed {
+.badgeRed,
+.badgeBlocked {
   background: #fee7e4;
   color: var(--red);
 }
 
 .badgeMuted,
-.badgeNeutral {
+.badgeNeutral,
+.badgeIdle {
   background: var(--surfaceMuted);
   color: var(--muted);
-}
-
-.timeline {
-  display: grid;
-  gap: 10px;
 }
 
 .timelineItem {
@@ -274,7 +298,8 @@ h2 {
   font-weight: 800;
 }
 
-.timelineItem p {
+.timelineItem p,
+.checkGrid div {
   margin: 0;
   padding: 10px 12px;
   border: 1px solid var(--line);
@@ -283,27 +308,45 @@ h2 {
 }
 
 .checkGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  margin-bottom: 0;
 }
 
 .checkGrid div {
   min-height: 44px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfcfc;
   font-weight: 700;
+}
+
+.reportBlock strong {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.reportBlock p {
+  margin: 12px 0 6px;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.reportBlock ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.reportBlock li {
+  margin: 5px 0;
+}
+
+@media (max-width: 1100px) {
+  .threeGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 980px) {
   .shell {
     grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: static;
   }
 
   .metrics,

@@ -23,10 +23,45 @@ export type WorkflowSummary = {
   steps: string[];
 };
 
+export type TaskSummary = {
+  id: string;
+  projectId: string;
+  title: string;
+  ownerAgentId: string;
+  status: string;
+  priority: string;
+  acceptanceCriteria: string[];
+};
+
+export type DecisionSummary = {
+  id: string;
+  projectId: string;
+  title: string;
+  status: string;
+  requestedBy: string;
+  impact: string;
+  recommendation: string;
+};
+
+export type ReportSummary = {
+  id: string;
+  projectId: string;
+  reportType: string;
+  period: string;
+  progressPercent: number;
+  done: string[];
+  doing: string[];
+  blocked: string[];
+  decisionsNeeded: string[];
+};
+
 export type FactoryData = {
   agents: AgentSummary[];
   projects: ProjectSummary[];
   workflows: WorkflowSummary[];
+  tasks: TaskSummary[];
+  decisions: DecisionSummary[];
+  reports: ReportSummary[];
 };
 
 const baseUrl = process.env.NEXT_PUBLIC_COMPANY_API_BASE_URL ?? "http://localhost:5000";
@@ -44,11 +79,14 @@ async function getJson<T>(path: string): Promise<T> {
 }
 
 export async function getFactoryData(): Promise<FactoryData> {
-  const [agents, projects, workflows] = await Promise.all([
+  const [agents, projects, workflows, tasks, decisions, reports] = await Promise.all([
     getJson<AgentSummary[]>("/api/agents"),
     getJson<ProjectSummary[]>("/api/projects"),
-    getJson<WorkflowSummary[]>("/api/workflows")
+    getJson<WorkflowSummary[]>("/api/workflows"),
+    getJson<TaskSummary[]>("/api/tasks"),
+    getJson<DecisionSummary[]>("/api/decisions"),
+    getJson<ReportSummary[]>("/api/reports")
   ]);
 
-  return { agents, projects, workflows };
+  return { agents, projects, workflows, tasks, decisions, reports };
 }
