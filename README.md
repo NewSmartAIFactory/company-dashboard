@@ -2,19 +2,30 @@
 
 CEO dashboard for NewSmartAIFactory.
 
-Planned stack:
+## Stack
 
 - Next.js
 - React
 - TypeScript
-- Tailwind CSS
+- lucide-react
 
-Initial screens:
+## Setup
 
-- Projects
-- Agents
-- Tasks
-- Approvals
-- Reports
-- Memory
-- Integrations
+```powershell
+cd C:\data\DevApps\AICompany\company-dashboard
+Copy-Item .\.env.local.example .\.env.local -Force
+npm install
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+The dashboard expects the API at:
+
+```text
+http://localhost:5000
+```
