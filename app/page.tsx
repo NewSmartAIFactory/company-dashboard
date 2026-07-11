@@ -41,6 +41,7 @@ export default async function Home() {
           <Link className="navItem" href="/approvals"><ShieldCheck size={18} /> Approvals</Link>
           <Link className="navItem" href="/reports"><FileText size={18} /> Reports</Link>
           <Link className="navItem" href="/events"><Activity size={18} /> Events</Link>
+          <Link className="navItem" href="/workflow-runs"><Network size={18} /> Workflow Runs</Link>
         </nav>
       </aside>
 
