@@ -8,6 +8,7 @@ import {
   Network,
   ShieldCheck
 } from "lucide-react";
+import Link from "next/link";
 import { DecisionActions, TaskActions } from "./components/FactoryActions";
 import { StatusBadge } from "./components/StatusBadge";
 import { getFactoryData } from "./lib/api";
@@ -87,13 +88,13 @@ export default async function Home() {
             </div>
             <div className="agentList">
               {data.agents.map((agent) => (
-                <div className="agentRow" key={agent.id}>
+                <Link className="agentRow" href={`/agents/${agent.id}`} key={agent.id}>
                   <div>
                     <strong>{agent.name}</strong>
                     <span>{agent.currentTask ?? agent.role}</span>
                   </div>
                   <StatusBadge status={agent.status} />
-                </div>
+                </Link>
               ))}
             </div>
           </div>

@@ -8,6 +8,17 @@ export type AgentSummary = {
   currentTask: string | null;
 };
 
+export type AgentDetail = AgentSummary & {
+  department: string;
+  prompt: string;
+  rules: string;
+  workflow: string;
+  memoryScope: string;
+  tools: string[];
+  definitionPath: string | null;
+  definitionUpdatedAtUtc: string | null;
+};
+
 export type ProjectSummary = {
   id: string;
   name: string;
@@ -103,4 +114,8 @@ export async function getFactoryData(): Promise<FactoryData> {
   ]);
 
   return { agents, projects, workflows, tasks, decisions, reports, auditLogs };
+}
+
+export function getAgentDetail(id: string): Promise<AgentDetail> {
+  return getJson<AgentDetail>(`/api/agents/${encodeURIComponent(id)}`);
 }
