@@ -81,6 +81,9 @@ export type ReportSummary = {
   doing: string[];
   blocked: string[];
   decisionsNeeded: string[];
+  summary: string | null;
+  publishedBy: string;
+  createdAtUtc: string | null;
 };
 
 export type AuditLogSummary = {
@@ -160,3 +163,5 @@ export function getTasks(): Promise<TaskSummary[]> { return getJson<TaskSummary[
 export function getTaskDetail(id: string): Promise<TaskDetail> { return getJson<TaskDetail>(`/api/tasks/${encodeURIComponent(id)}`); }
 export function getApprovals():Promise<ApprovalSummary[]>{return getJson<ApprovalSummary[]>("/api/approvals");}
 export function getApprovalDetail(id:string):Promise<ApprovalDetail>{return getJson<ApprovalDetail>(`/api/approvals/${encodeURIComponent(id)}`);}
+export function getReports():Promise<ReportSummary[]>{return getJson<ReportSummary[]>("/api/reports");}
+export function getReportDetail(id:string):Promise<ReportSummary>{return getJson<ReportSummary>(`/api/reports/${encodeURIComponent(id)}`);}

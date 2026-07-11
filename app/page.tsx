@@ -39,7 +39,7 @@ export default async function Home() {
           <a className="navItem" href="#"><Bot size={18} /> Agents</a>
           <Link className="navItem" href="/tasks"><ClipboardCheck size={18} /> Tasks</Link>
           <Link className="navItem" href="/approvals"><ShieldCheck size={18} /> Approvals</Link>
-          <a className="navItem" href="#"><FileText size={18} /> Reports</a>
+          <Link className="navItem" href="/reports"><FileText size={18} /> Reports</Link>
         </nav>
       </aside>
 
