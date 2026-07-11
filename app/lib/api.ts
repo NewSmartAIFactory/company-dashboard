@@ -64,10 +64,10 @@ export type FactoryData = {
   reports: ReportSummary[];
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_COMPANY_API_BASE_URL ?? "http://localhost:5000";
+export const companyApiBaseUrl = process.env.NEXT_PUBLIC_COMPANY_API_BASE_URL ?? "http://localhost:5000";
 
 async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${baseUrl}${path}`, {
+  const response = await fetch(`${companyApiBaseUrl}${path}`, {
     cache: "no-store"
   });
 

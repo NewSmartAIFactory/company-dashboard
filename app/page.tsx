@@ -6,11 +6,11 @@ import {
   FileText,
   GitPullRequestArrow,
   Network,
-  ShieldCheck,
-  Workflow
+  ShieldCheck
 } from "lucide-react";
-import { getFactoryData } from "./lib/api";
+import { DecisionActions, TaskActions } from "./components/FactoryActions";
 import { StatusBadge } from "./components/StatusBadge";
+import { getFactoryData } from "./lib/api";
 
 export default async function Home() {
   const data = await getFactoryData();
@@ -134,7 +134,10 @@ export default async function Home() {
                     <p>{task.title}</p>
                     <span>{task.ownerAgentId} Â· {task.priority}</span>
                   </div>
-                  <StatusBadge status={task.status} />
+                  <div className="statusColumn">
+                    <StatusBadge status={task.status} />
+                    <TaskActions taskId={task.id} status={task.status} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -156,7 +159,10 @@ export default async function Home() {
                     <p>{decision.title}</p>
                     <span>{decision.impact} Â· {decision.requestedBy}</span>
                   </div>
-                  <StatusBadge status={decision.status} />
+                  <div className="statusColumn">
+                    <StatusBadge status={decision.status} />
+                    <DecisionActions decisionId={decision.id} status={decision.status} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -187,16 +193,16 @@ export default async function Home() {
         <section className="panel wide">
           <div className="panelHeader">
             <div>
-              <p className="eyebrow">Sprint 1.2</p>
-              <h2>Operating API Expansion</h2>
+              <p className="eyebrow">Sprint 1.3</p>
+              <h2>Control Actions</h2>
             </div>
             <GitPullRequestArrow size={20} />
           </div>
           <div className="checkGrid">
-            <div>Tasks API</div>
-            <div>Decisions API</div>
-            <div>Reports API</div>
-            <div>Dashboard panels</div>
+            <div>Mark task done</div>
+            <div>Block task</div>
+            <div>Approve decision</div>
+            <div>Reject decision</div>
           </div>
         </section>
       </section>
