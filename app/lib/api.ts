@@ -100,6 +100,7 @@ export type AuditLogSummary = {
 export type ApprovalSummary={id:string;projectId:string;title:string;requestedBy:string;status:string;createdAtUtc:string;updatedAtUtc:string};
 export type ApprovalHistoryItem={id:number;action:string;actor:string;comment:string|null;createdAtUtc:string};
 export type ApprovalDetail=ApprovalSummary&{description:string;scopeImpact:string|null;costImpact:string|null;timelineImpact:string|null;securityImpact:string|null;architectureImpact:string|null;history:ApprovalHistoryItem[]};
+export type DomainEvent={id:string;eventType:string;aggregateType:string;aggregateId:string;projectId:string|null;correlationId:string;actor:string;payload:Record<string,unknown>;occurredAtUtc:string};
 
 export type FactoryData = {
   agents: AgentSummary[];
@@ -165,3 +166,4 @@ export function getApprovals():Promise<ApprovalSummary[]>{return getJson<Approva
 export function getApprovalDetail(id:string):Promise<ApprovalDetail>{return getJson<ApprovalDetail>(`/api/approvals/${encodeURIComponent(id)}`);}
 export function getReports():Promise<ReportSummary[]>{return getJson<ReportSummary[]>("/api/reports");}
 export function getReportDetail(id:string):Promise<ReportSummary>{return getJson<ReportSummary>(`/api/reports/${encodeURIComponent(id)}`);}
+export function getEvents():Promise<DomainEvent[]>{return getJson<DomainEvent[]>("/api/events?limit=100");}

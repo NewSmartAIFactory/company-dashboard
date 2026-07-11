@@ -40,6 +40,7 @@ export default async function Home() {
           <Link className="navItem" href="/tasks"><ClipboardCheck size={18} /> Tasks</Link>
           <Link className="navItem" href="/approvals"><ShieldCheck size={18} /> Approvals</Link>
           <Link className="navItem" href="/reports"><FileText size={18} /> Reports</Link>
+          <Link className="navItem" href="/events"><Activity size={18} /> Events</Link>
         </nav>
       </aside>
 
