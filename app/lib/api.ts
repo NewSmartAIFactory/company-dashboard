@@ -33,6 +33,15 @@ export type ProjectDetail = ProjectSummary & {
   updatedAtUtc: string;
 };
 
+export type SprintSummary = {
+  id: string; projectId: string; name: string; goal: string; status: string;
+  startDate: string | null; endDate: string | null; taskCount: number; completedTaskCount: number;
+};
+
+export type SprintDetail = SprintSummary & {
+  createdAtUtc: string; updatedAtUtc: string; backlog: TaskSummary[];
+};
+
 export type WorkflowSummary = {
   id: string;
   name: string;
@@ -132,4 +141,12 @@ export function getProjects(): Promise<ProjectSummary[]> {
 
 export function getProjectDetail(id: string): Promise<ProjectDetail> {
   return getJson<ProjectDetail>(`/api/projects/${encodeURIComponent(id)}`);
+}
+
+export function getSprints(projectId?: string): Promise<SprintSummary[]> {
+  return getJson<SprintSummary[]>(`/api/sprints${projectId ? `?projectId=${encodeURIComponent(projectId)}` : ""}`);
+}
+
+export function getSprintDetail(id: string): Promise<SprintDetail> {
+  return getJson<SprintDetail>(`/api/sprints/${encodeURIComponent(id)}`);
 }
