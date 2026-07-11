@@ -37,7 +37,7 @@ export default async function Home() {
           <Link className="navItem" href="/projects"><Boxes size={18} /> Projects</Link>
           <Link className="navItem" href="/sprints"><GitPullRequestArrow size={18} /> Sprints</Link>
           <a className="navItem" href="#"><Bot size={18} /> Agents</a>
-          <a className="navItem" href="#"><ClipboardCheck size={18} /> Tasks</a>
+          <Link className="navItem" href="/tasks"><ClipboardCheck size={18} /> Tasks</Link>
           <a className="navItem" href="#"><ShieldCheck size={18} /> Decisions</a>
           <a className="navItem" href="#"><FileText size={18} /> Reports</a>
         </nav>

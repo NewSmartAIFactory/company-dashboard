@@ -59,6 +59,8 @@ export type TaskSummary = {
   acceptanceCriteria: string[];
 };
 
+export type TaskDetail = TaskSummary & { sprintId: string | null; description: string | null; dueDate: string | null; dependencies: string[]; createdAtUtc: string; updatedAtUtc: string; activity: AuditLogSummary[]; };
+
 export type DecisionSummary = {
   id: string;
   projectId: string;
@@ -150,3 +152,6 @@ export function getSprints(projectId?: string): Promise<SprintSummary[]> {
 export function getSprintDetail(id: string): Promise<SprintDetail> {
   return getJson<SprintDetail>(`/api/sprints/${encodeURIComponent(id)}`);
 }
+
+export function getTasks(): Promise<TaskSummary[]> { return getJson<TaskSummary[]>("/api/tasks"); }
+export function getTaskDetail(id: string): Promise<TaskDetail> { return getJson<TaskDetail>(`/api/tasks/${encodeURIComponent(id)}`); }
