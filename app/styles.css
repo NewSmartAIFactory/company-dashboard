@@ -250,6 +250,8 @@ h2 {
 .formActions { display: flex; justify-content: flex-end; }
 .primaryButton { padding: 10px 15px; border: 0; border-radius: 8px; background: var(--teal); color: #fff; cursor: pointer; font-weight: 700; }
 .primaryButton:disabled { cursor: wait; opacity: .6; }
+.approvalActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.approvalActions input { flex: 1 1 100%; }
 
 .compactItem {
   align-items: flex-start;

@@ -94,6 +94,9 @@ export type AuditLogSummary = {
   reason: string | null;
   createdAtUtc: string;
 };
+export type ApprovalSummary={id:string;projectId:string;title:string;requestedBy:string;status:string;createdAtUtc:string;updatedAtUtc:string};
+export type ApprovalHistoryItem={id:number;action:string;actor:string;comment:string|null;createdAtUtc:string};
+export type ApprovalDetail=ApprovalSummary&{description:string;scopeImpact:string|null;costImpact:string|null;timelineImpact:string|null;securityImpact:string|null;architectureImpact:string|null;history:ApprovalHistoryItem[]};
 
 export type FactoryData = {
   agents: AgentSummary[];
@@ -155,3 +158,5 @@ export function getSprintDetail(id: string): Promise<SprintDetail> {
 
 export function getTasks(): Promise<TaskSummary[]> { return getJson<TaskSummary[]>("/api/tasks"); }
 export function getTaskDetail(id: string): Promise<TaskDetail> { return getJson<TaskDetail>(`/api/tasks/${encodeURIComponent(id)}`); }
+export function getApprovals():Promise<ApprovalSummary[]>{return getJson<ApprovalSummary[]>("/api/approvals");}
+export function getApprovalDetail(id:string):Promise<ApprovalDetail>{return getJson<ApprovalDetail>(`/api/approvals/${encodeURIComponent(id)}`);}
