@@ -288,6 +288,13 @@ h2 {
   animation: spin 0.8s linear infinite;
 }
 
+.auditList { display: grid; gap: 8px; }
+.auditItem { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.auditItem:last-child { border-bottom: 0; }
+.auditItem p, .auditMeta span, .auditMeta time, .emptyState { color: var(--muted); font-size: 13px; }
+.auditItem p { margin: 4px 0 0; text-transform: capitalize; }
+.auditMeta { display: grid; justify-items: end; gap: 4px; }
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

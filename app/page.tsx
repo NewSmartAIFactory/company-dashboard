@@ -132,7 +132,7 @@ export default async function Home() {
                   <div>
                     <strong>{task.id}</strong>
                     <p>{task.title}</p>
-                    <span>{task.ownerAgentId} Â· {task.priority}</span>
+                    <span>{task.ownerAgentId} · {task.priority}</span>
                   </div>
                   <div className="statusColumn">
                     <StatusBadge status={task.status} />
@@ -157,7 +157,7 @@ export default async function Home() {
                   <div>
                     <strong>{decision.id}</strong>
                     <p>{decision.title}</p>
-                    <span>{decision.impact} Â· {decision.requestedBy}</span>
+                    <span>{decision.impact} · {decision.requestedBy}</span>
                   </div>
                   <div className="statusColumn">
                     <StatusBadge status={decision.status} />
@@ -187,6 +187,32 @@ export default async function Home() {
                 {report?.doing.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </div>
+          </div>
+        </section>
+
+        <section className="panel wide">
+          <div className="panelHeader">
+            <div>
+              <p className="eyebrow">Audit Log</p>
+              <h2>Recent Control Activity</h2>
+            </div>
+            <Activity size={20} />
+          </div>
+          <div className="auditList">
+            {data.auditLogs.length === 0 ? (
+              <p className="emptyState">No audited actions yet.</p>
+            ) : data.auditLogs.map((entry) => (
+              <div className="auditItem" key={entry.id}>
+                <div>
+                  <strong>{entry.entityId}</strong>
+                  <p>{entry.action.replaceAll(".", " ")}</p>
+                </div>
+                <div className="auditMeta">
+                  <span>{entry.actor}</span>
+                  <time dateTime={entry.createdAtUtc}>{new Date(entry.createdAtUtc).toLocaleString("en-GB")}</time>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

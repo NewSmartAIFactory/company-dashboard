@@ -55,6 +55,18 @@ export type ReportSummary = {
   decisionsNeeded: string[];
 };
 
+export type AuditLogSummary = {
+  id: number;
+  action: string;
+  entityType: string;
+  entityId: string;
+  actor: string;
+  previousValue: string | null;
+  newValue: string | null;
+  reason: string | null;
+  createdAtUtc: string;
+};
+
 export type FactoryData = {
   agents: AgentSummary[];
   projects: ProjectSummary[];
@@ -62,6 +74,7 @@ export type FactoryData = {
   tasks: TaskSummary[];
   decisions: DecisionSummary[];
   reports: ReportSummary[];
+  auditLogs: AuditLogSummary[];
 };
 
 export const companyApiBaseUrl = process.env.NEXT_PUBLIC_COMPANY_API_BASE_URL ?? "http://localhost:5000";
@@ -79,14 +92,15 @@ async function getJson<T>(path: string): Promise<T> {
 }
 
 export async function getFactoryData(): Promise<FactoryData> {
-  const [agents, projects, workflows, tasks, decisions, reports] = await Promise.all([
+  const [agents, projects, workflows, tasks, decisions, reports, auditLogs] = await Promise.all([
     getJson<AgentSummary[]>("/api/agents"),
     getJson<ProjectSummary[]>("/api/projects"),
     getJson<WorkflowSummary[]>("/api/workflows"),
     getJson<TaskSummary[]>("/api/tasks"),
     getJson<DecisionSummary[]>("/api/decisions"),
-    getJson<ReportSummary[]>("/api/reports")
+    getJson<ReportSummary[]>("/api/reports"),
+    getJson<AuditLogSummary[]>("/api/audit-logs?limit=12")
   ]);
 
-  return { agents, projects, workflows, tasks, decisions, reports };
+  return { agents, projects, workflows, tasks, decisions, reports, auditLogs };
 }
