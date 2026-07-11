@@ -34,6 +34,8 @@ button {
   font: inherit;
 }
 
+input, select, textarea { width: 100%; padding: 10px 11px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); font: inherit; }
+
 .shell {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -241,6 +243,13 @@ h2 {
 .detailCard pre { margin: 0; white-space: pre-wrap; font-family: inherit; color: var(--muted); line-height: 1.55; }
 .toolList { display: flex; flex-wrap: wrap; gap: 8px; }
 .toolList span { padding: 7px 10px; border-radius: 999px; background: var(--surfaceMuted); color: var(--teal); font-size: 13px; font-weight: 700; }
+.projectForm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.projectForm label { display: grid; gap: 7px; color: var(--muted); font-size: 13px; font-weight: 700; }
+.fullField, .formActions, .formError { grid-column: 1 / -1; }
+.formError { margin: 0; color: var(--red); }
+.formActions { display: flex; justify-content: flex-end; }
+.primaryButton { padding: 10px 15px; border: 0; border-radius: 8px; background: var(--teal); color: #fff; cursor: pointer; font-weight: 700; }
+.primaryButton:disabled { cursor: wait; opacity: .6; }
 
 .compactItem {
   align-items: flex-start;
@@ -446,5 +455,5 @@ h2 {
     justify-items: start;
   }
 
-  .detailGrid { grid-template-columns: 1fr; }
+  .detailGrid, .projectForm { grid-template-columns: 1fr; }
 }

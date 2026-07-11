@@ -34,7 +34,7 @@ export default async function Home() {
 
         <nav className="nav">
           <a className="navItem active" href="#"><Activity size={18} /> Overview</a>
-          <a className="navItem" href="#"><Boxes size={18} /> Projects</a>
+          <Link className="navItem" href="/projects"><Boxes size={18} /> Projects</Link>
           <a className="navItem" href="#"><Bot size={18} /> Agents</a>
           <a className="navItem" href="#"><ClipboardCheck size={18} /> Tasks</a>
           <a className="navItem" href="#"><ShieldCheck size={18} /> Decisions</a>

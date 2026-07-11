@@ -27,6 +27,12 @@ export type ProjectSummary = {
   currentSprint: string | null;
 };
 
+export type ProjectDetail = ProjectSummary & {
+  description: string | null;
+  createdAtUtc: string;
+  updatedAtUtc: string;
+};
+
 export type WorkflowSummary = {
   id: string;
   name: string;
@@ -118,4 +124,12 @@ export async function getFactoryData(): Promise<FactoryData> {
 
 export function getAgentDetail(id: string): Promise<AgentDetail> {
   return getJson<AgentDetail>(`/api/agents/${encodeURIComponent(id)}`);
+}
+
+export function getProjects(): Promise<ProjectSummary[]> {
+  return getJson<ProjectSummary[]>("/api/projects");
+}
+
+export function getProjectDetail(id: string): Promise<ProjectDetail> {
+  return getJson<ProjectDetail>(`/api/projects/${encodeURIComponent(id)}`);
 }
