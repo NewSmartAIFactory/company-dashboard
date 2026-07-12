@@ -102,6 +102,7 @@ export type ApprovalHistoryItem={id:number;action:string;actor:string;comment:st
 export type ApprovalDetail=ApprovalSummary&{description:string;scopeImpact:string|null;costImpact:string|null;timelineImpact:string|null;securityImpact:string|null;architectureImpact:string|null;history:ApprovalHistoryItem[]};
 export type DomainEvent={id:string;eventType:string;aggregateType:string;aggregateId:string;projectId:string|null;correlationId:string;actor:string;payload:Record<string,unknown>;occurredAtUtc:string;publishAttempts:number;publishedAtUtc:string|null;lastPublishError:string|null};
 export type WorkflowRun={id:string;workflowId:string;projectId:string;status:string;currentStepOrder:number;currentStep:string;nextAgent:string|null;initiatedBy:string;startedAtUtc:string;updatedAtUtc:string;completedAtUtc:string|null};
+export type AgentRun={id:string;agentId:string;taskId:string|null;projectId:string|null;status:string;inputText:string;outputText:string|null;durationMs:number|null;filesTouched:string[];decisionRequested:string|null;error:string|null;startedAtUtc:string;completedAtUtc:string|null};
 
 export type FactoryData = {
   agents: AgentSummary[];
@@ -169,3 +170,4 @@ export function getReports():Promise<ReportSummary[]>{return getJson<ReportSumma
 export function getReportDetail(id:string):Promise<ReportSummary>{return getJson<ReportSummary>(`/api/reports/${encodeURIComponent(id)}`);}
 export function getEvents():Promise<DomainEvent[]>{return getJson<DomainEvent[]>("/api/events?limit=100");}
 export function getWorkflowRuns():Promise<WorkflowRun[]>{return getJson<WorkflowRun[]>("/api/workflow-runs");}
+export function getAgentRuns():Promise<AgentRun[]>{return getJson<AgentRun[]>("/api/agent-runs?limit=100");}
