@@ -14,7 +14,7 @@ import { StatusBadge } from "./components/StatusBadge";
 import { getApiHealth, getFactoryData } from "./lib/api";
 
 export default async function Home() {
-  const [data, health] = await Promise.all([getFactoryData(), getApiHealth().catch(() => ({ status: "unavailable" }))]);
+  const [data, health] = await Promise.all([getFactoryData(), getApiHealth().catch(() => ({ status: "unavailable", components: { qdrant: false } }))]);
   const project = data.projects[0];
   const workflow = data.workflows[0];
   const report = data.reports[0];
