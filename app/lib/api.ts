@@ -103,6 +103,7 @@ export type ApprovalDetail=ApprovalSummary&{description:string;scopeImpact:strin
 export type DomainEvent={id:string;eventType:string;aggregateType:string;aggregateId:string;projectId:string|null;correlationId:string;actor:string;payload:Record<string,unknown>;occurredAtUtc:string;publishAttempts:number;publishedAtUtc:string|null;lastPublishError:string|null};
 export type WorkflowRun={id:string;workflowId:string;projectId:string;status:string;currentStepOrder:number;currentStep:string;nextAgent:string|null;initiatedBy:string;startedAtUtc:string;updatedAtUtc:string;completedAtUtc:string|null};
 export type AgentRun={id:string;agentId:string;taskId:string|null;projectId:string|null;status:string;inputText:string;outputText:string|null;durationMs:number|null;filesTouched:string[];decisionRequested:string|null;error:string|null;startedAtUtc:string;completedAtUtc:string|null};
+export type MemorySummary={id:string;scope:string;memoryType:string;title:string;content:string;projectId:string|null;agentId:string|null;source:string|null;isObsolete:boolean;createdAtUtc:string;updatedAtUtc:string};
 
 export type FactoryData = {
   agents: AgentSummary[];
@@ -171,3 +172,4 @@ export function getReportDetail(id:string):Promise<ReportSummary>{return getJson
 export function getEvents():Promise<DomainEvent[]>{return getJson<DomainEvent[]>("/api/events?limit=100");}
 export function getWorkflowRuns():Promise<WorkflowRun[]>{return getJson<WorkflowRun[]>("/api/workflow-runs");}
 export function getAgentRuns():Promise<AgentRun[]>{return getJson<AgentRun[]>("/api/agent-runs?limit=100");}
+export function getMemories(query?:string):Promise<MemorySummary[]>{return getJson<MemorySummary[]>(`/api/memory/search${query?`?q=${encodeURIComponent(query)}`:""}`);}
