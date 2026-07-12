@@ -173,6 +173,6 @@ export function getEvents():Promise<DomainEvent[]>{return getJson<DomainEvent[]>
 export function getWorkflowRuns():Promise<WorkflowRun[]>{return getJson<WorkflowRun[]>("/api/workflow-runs");}
 export function getAgentRuns():Promise<AgentRun[]>{return getJson<AgentRun[]>("/api/agent-runs?limit=100");}
 export function getMemories(query?:string):Promise<MemorySummary[]>{return getJson<MemorySummary[]>(`/api/memory/search${query?`?q=${encodeURIComponent(query)}`:""}`);}
-export function getSemanticMemories(query:string):Promise<MemorySummary[]>{return getJson<MemorySummary[]>(`/api/memory/semantic-search?q=${encodeURIComponent(query)}`);}
+export function getSemanticMemories(query:string,scope?:string):Promise<MemorySummary[]>{return getJson<MemorySummary[]>(`/api/memory/semantic-search?q=${encodeURIComponent(query)}${scope?`&scope=${encodeURIComponent(scope)}`:""}`);}
 export type QdrantHealth={collection:string;healthy:boolean;error?:string};
 export function getQdrantHealth():Promise<QdrantHealth>{return getJson<QdrantHealth>("/api/memory/qdrant/health");}
