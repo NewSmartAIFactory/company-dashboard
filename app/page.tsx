@@ -11,10 +11,10 @@ import {
 import Link from "next/link";
 import { DecisionActions, TaskActions } from "./components/FactoryActions";
 import { StatusBadge } from "./components/StatusBadge";
-import { getFactoryData } from "./lib/api";
+import { getApiHealth, getFactoryData } from "./lib/api";
 
 export default async function Home() {
-  const data = await getFactoryData();
+  const [data, health] = await Promise.all([getFactoryData(), getApiHealth().catch(() => ({ status: "unavailable" }))]);
   const project = data.projects[0];
   const workflow = data.workflows[0];
   const report = data.reports[0];
@@ -55,7 +55,7 @@ export default async function Home() {
           </div>
           <div className="apiStatus">
             <span className="pulse" />
-            API connected
+            API {health.status}
           </div>
         </header>
 

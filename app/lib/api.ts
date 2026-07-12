@@ -176,3 +176,5 @@ export function getMemories(query?:string,scope?:string):Promise<MemorySummary[]
 export function getSemanticMemories(query:string,scope?:string):Promise<MemorySummary[]>{return getJson<MemorySummary[]>(`/api/memory/semantic-search?q=${encodeURIComponent(query)}${scope?`&scope=${encodeURIComponent(scope)}`:""}`);}
 export type QdrantHealth={collection:string;healthy:boolean;error?:string};
 export function getQdrantHealth():Promise<QdrantHealth>{return getJson<QdrantHealth>("/api/memory/qdrant/health");}
+export type ApiHealth={status:string;components?:{qdrant?:boolean}};
+export function getApiHealth():Promise<ApiHealth>{return getJson<ApiHealth>("/api/health/");}
