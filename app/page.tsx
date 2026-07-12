@@ -55,7 +55,7 @@ export default async function Home() {
           </div>
           <div className="apiStatus">
             <span className="pulse" />
-            API {health.status}
+            API {health.status} · Qdrant {health.components?.qdrant ? "healthy" : "degraded"}
           </div>
         </header>
 
